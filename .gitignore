@@ -1,0 +1,5 @@
+# runtime / machine-local files
+scheduled_tasks.lock
+settings.local.json
+__pycache__/
+*.pyc
