@@ -12,6 +12,8 @@ subset used in mbse/<system>/ (see rules/sysml_v2.md §3):
   interface : D connect a.p to b.q       -> connector
   allocate x to y                        -> allocation set (same model)
 
+Every composition is auto-arranged (addComponent stacks children at one spot).
+
 Validate the model first (/sysml-validate); this parser assumes it is valid.
 
 Usage:
@@ -229,7 +231,11 @@ def emit(model, root, name, src_dir):
     w("% --- components, ports, parameters")
     counts = {"components": 0, "ports": 0, "params": 0, "connectors": 0}
 
+    compositions = []  # Simulink paths of components that own children
+
     def walk(comp):
+        if comp.children:
+            compositions.append("/".join([name + "Arch"] + comp.path))
         for child in comp.children.values():
             w(f"{child.var()} = addComponent({comp.var() if comp.parent else 'arch'}{'.Architecture' if comp.parent else ''}, {q(child.name)});")
             counts["components"] += 1
@@ -302,6 +308,10 @@ def emit(model, root, name, src_dir):
         (dc, dp), = resolve(root, b)
         connect_pair(sc, sp, dc, dp, None, {})
 
+    w("")
+    w("% --- layout: auto-arrange every composition (addComponent stacks children at one spot)")
+    ordered = sorted(compositions, key=lambda s: -s.count("/"))  # deepest first, root last
+    w("for s = [" + ", ".join(q(s) for s in ordered) + "], Simulink.BlockDiagram.arrangeSystem(s); end")
     w("")
     w("% --- allocation (software services -> compute), same-model allocation set")
     w("as = systemcomposer.allocation.createAllocationSet(aset, mdl, mdl); sc = as.Scenarios(1);")
