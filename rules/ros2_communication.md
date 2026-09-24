@@ -114,6 +114,13 @@ static const rclcpp::QoS STATE_QOS = rclcpp::QoS(1)
 | State/Config       | RELIABLE    | TRANSIENT_LOCAL | 1     | robot_description |
 | Transforms         | RELIABLE    | VOLATILE        | 100   | tf                |
 | Map                | RELIABLE    | TRANSIENT_LOCAL | 1     | occupancy_grid    |
+| GNSS fix (low freq) | RELIABLE   | VOLATILE        | 10    | gps/fix           |
+
+GNSS topics (`gps/fix`, `gps/vel`, `gps/heading`, `gps/time_reference`) are a deliberate
+exception to "sensor = best-effort". A best-effort publisher never matches a reliable
+subscriber, and `robot_localization`'s `navsat_transform_node` subscribes reliably. A reliable
+publisher still matches best-effort subscribers. Don't "fix" these to `SensorDataQoS`:
+`rover_sensors_bringup`'s contract test asserts `gps/fix` is RELIABLE.
 
 ## Custom Message Definition
 
