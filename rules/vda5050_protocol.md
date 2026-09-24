@@ -1,3 +1,11 @@
+---
+description: "VDA 5050 Protocol Reference (Version 3.0.0)"
+paths:
+  - "**/*vda5050*/**"
+  - "**/*vda5050*"
+  - "**/*mqtt*"
+---
+
 # VDA 5050 Protocol Reference (Version 3.0.0)
 
 Interface for the communication between mobile robots and a fleet

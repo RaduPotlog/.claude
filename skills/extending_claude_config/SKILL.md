@@ -41,8 +41,20 @@ same indexing — so the config stays coherent.
 ## Templates
 
 ### rule — `rules/<name>.md`
-No frontmatter. Start with an H1 and a one-line purpose + source path.
+Start with an H1 and a one-line purpose + source path. Rules without
+`paths:` load in **every** session, and the harness warns once all
+always-loaded instruction files exceed 150k chars. So only core
+conventions (layering, nodes, QoS, testing) stay global. Domain
+reference rules (VDA 5050, Nav 2, ros2_control, BT, SysML/MATLAB, …)
+get `paths:` globs. They load when matching files are touched, and the
+skills/agents that cite them read them explicitly.
 ```markdown
+---
+description: "<Title> Reference"
+paths:                      # omit only for a core, always-needed rule
+  - "**/*<domain>*"
+---
+
 # <Title> Reference
 
 <one-line purpose>. Source: `~/nav2_ws/src/<repo>/` (version …).

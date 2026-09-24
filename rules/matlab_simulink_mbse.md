@@ -1,3 +1,14 @@
+---
+description: "MATLAB / Simulink / System Composer MBSE Reference"
+paths:
+  - "rover_mbse/**"
+  - "**/*.sysml"
+  - "**/*.kerml"
+  - "**/*.m"
+  - "**/*.slx"
+  - "**/*.sldd"
+---
+
 # MATLAB / Simulink / System Composer MBSE Reference
 
 How Claude works with **MATLAB, Simulink and System Composer** for model-based
@@ -69,7 +80,7 @@ Tools exposed (14): `check_matlab_code`, `detect_matlab_toolboxes`,
 **A. SysML v2 text → System Composer** (SysML is the source of truth)
 ```bash
 python3 .claude/skills/system_composer_sysml/scripts/sysml_to_syscomp.py \
-  mbse/rover_a1 --root RoverA1 --out mbse/matlab/build_architecture.m
+  rover_mbse/rover_a1 --root RoverA1 --out rover_mbse/matlab/build_architecture.m
 ```
 then `evaluate_matlab_code(project_path=<mbse\matlab>, code="build_architecture")`.
 Generated, idempotent: `arch/RoverA1Arch.slx` (components + parameters with
@@ -79,16 +90,16 @@ generated boundary ports named `<child>_<port>`. Check with `model_overview` /
 `model_check`. (A SysML v2 API server + `systemcomposer.sysml.Repository` is an
 alternative source, not needed for local models.)
 
-**B. MATLAB project → SysML v2 text**: `mbse/matlab/export_sysml.m` wraps the
+**B. MATLAB project → SysML v2 text**: `rover_mbse/matlab/export_sysml.m` wraps the
 artifacts in `RoverA1.prj` (the `arch/` folder **must be on the project path**)
-and calls `exportFromMLProject` → `mbse/export/rover_a1_export.sysml`, which
+and calls `exportFromMLProject` → `rover_mbse/export/rover_a1_export.sysml`, which
 passes `/sysml-validate`. The export is **lossy**: keeps parts, ports, all
 connectors, parameters, `RosTopic` metadata, allocations; drops units/quantity
 types (all `Real`), turns items→port defs and flows→`connect`, and has **no
 requirements, analyses, verifications or provenance docs**. Use it for diffs
-only; never overwrite `mbse/rover_a1/`.
+only; never overwrite `rover_mbse/rover_a1/`.
 
-**C. Analysis:** `mbse/matlab/analysis_rover_a1.m` reads inputs from the
+**C. Analysis:** `rover_mbse/matlab/analysis_rover_a1.m` reads inputs from the
 System Composer **parameters** (never re-typed numbers), evaluates each SysML
 calc/analysis/verification case, runs the Simulink twin
 (`build_endurance_sim.m` → `EnduranceSim.slx`), and writes
@@ -116,7 +127,7 @@ calc/analysis/verification case, runs the Simulink twin
 - Use the **MCP tools**. Never regex-edit `.slx` / `.sldd` files. Read with
   `model_read` / `model_overview`, edit with `model_edit`, then run
   `model_check`.
-- Generated MATLAB code goes in `mbse/matlab/` as **scripts or functions**, so it can be
+- Generated MATLAB code goes in `rover_mbse/matlab/` as **scripts or functions**, so it can be
   re-run and diffed. Close models with `close_system(m, 0)`, dictionaries with
   `Simulink.data.dictionary.closeAll('-discard')` — a "save changes?" dialog
   blocks the MCP session. Run `check_matlab_code` on each one before running it.

@@ -1,5 +1,5 @@
 ---
-description: Scaffold a new SysML v2 model (or a new subsystem package set) under mbse/ following the project's layered layout, seeded from the ROS 2 workspace, and validate it.
+description: Scaffold a new SysML v2 model (or a new subsystem package set) under rover_mbse/ following the project's layered layout, seeded from the ROS 2 workspace, and validate it.
 argument-hint: "<SystemName> [from-workspace|empty]"
 allowed-tools: ["Bash", "Read", "Write", "Edit", "Grep", "Glob"]
 ---
@@ -8,7 +8,7 @@ Scaffold a SysML v2 model for a system or subsystem.
 
 Argument handling (`$ARGUMENTS`):
 1. `<SystemName>`: PascalCase (e.g. `DockingStation`, `RoverA2`). Required.
-   The directory is `mbse/<snake_case_name>/`.
+   The directory is `rover_mbse/<snake_case_name>/`.
 2. `[mode]`: `from-workspace` (default) seeds structure and values from the
    ROS 2 sources. `empty` creates the skeleton only.
 
@@ -16,7 +16,7 @@ If the name is missing, or the directory already exists, ask before acting.
 
 Process:
 1. Read the `sysml_v2_modeling` skill and `rules/sysml_v2.md`. Use
-   `mbse/rover_a1/` as the reference for layout and idioms.
+   `rover_mbse/rover_a1/` as the reference for layout and idioms.
 2. Create five files, one package each, named `<System>_<Layer>`:
    - `01_interfaces.sysml`: `QosProfile`, the `RosTopic` metadata def (or
      `private import RoverA1_Interfaces::*;` to reuse it), `item def`s, and
@@ -32,8 +32,8 @@ Process:
 3. For `from-workspace`: pull values from their source files (see the skill,
    "Deriving model content"). Cite each source in a `doc`. Mark unknowns
    `TBD`. Never invent numbers.
-4. Validate with `/sysml-validate mbse/<name>` and fix until it passes.
-5. Render the structure interconnection view into `mbse/diagrams/`.
+4. Validate with `/sysml-validate rover_mbse/<name>` and fix until it passes.
+5. Render the structure interconnection view into `rover_mbse/diagrams/`.
 6. Run the `sysml-reviewer` agent on the new directory and address its
    Must-fix items.
 7. Print a summary: files created, element counts (parts, ports, flows,

@@ -1,3 +1,14 @@
+---
+description: "SysML v2 Textual Notation Reference"
+paths:
+  - "rover_mbse/**"
+  - "**/*.sysml"
+  - "**/*.kerml"
+  - "**/*.m"
+  - "**/*.slx"
+  - "**/*.sldd"
+---
+
 # SysML v2 Textual Notation Reference
 
 Quick reference and project conventions for writing **SysML v2** models
@@ -11,7 +22,7 @@ Quick reference and project conventions for writing **SysML v2** models
   `sysml.library/`.
 - Validator + renderer: `skills/sysml_v2_modeling/scripts/sysml_validate.py`
   (run through `/sysml-validate`). Pilot kernel env: `~/mbse_ws/tools/sysml-env`.
-- Seed model: `rover_a1/mbse/rover_a1/` (`01_interfaces` … `05_analysis`).
+- Seed model: `rover_a1/rover_mbse/rover_a1/` (`01_interfaces` … `05_analysis`).
 - MATLAB / System Composer side: `matlab_simulink_mbse.md`.
 
 ---
@@ -74,7 +85,7 @@ Analysis objective → `require <requirement usage>;`. Verification objective �
 
 | Topic | Rule |
 |-------|------|
-| Layout | `mbse/<system>/NN_<layer>.sysml`, **one package per file**, numbered in dependency order (`01_interfaces`, `02_structure`, `03_calculations`, `04_requirements`, `05_analysis`). The validator loads a directory in sorted order. |
+| Layout | `rover_mbse/<system>/NN_<layer>.sysml`, **one package per file**, numbered in dependency order (`01_interfaces`, `02_structure`, `03_calculations`, `04_requirements`, `05_analysis`). The validator loads a directory in sorted order. |
 | Package names | `<System>_<Layer>` (e.g. `RoverA1_Structure`). Import with `private import` only. |
 | Naming | `PascalCase` for defs, `camelCase` for usages and attributes. Requirement ids `<'R-<AREA>-NN'>` with AREA ∈ PERF, SAF, CTRL, END, IF, ENV. |
 | Provenance | Every numeric value has a `doc` or `//` comment naming its **source file** (URDF, controller yaml, datasheet). |

@@ -1,3 +1,13 @@
+---
+description: "ros2_control / ros2_controllers Architecture Reference"
+paths:
+  - "**/*controllers*.yaml"
+  - "**/*ros2_control*"
+  - "**/*.urdf.xacro"
+  - "**/hardware/**"
+  - "**/*hardware_interface*"
+---
+
 # ros2_control / ros2_controllers Architecture Reference
 
 `ros2_controllers` is the official controller suite for the

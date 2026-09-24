@@ -1,3 +1,11 @@
+---
+description: "VDA 5050 — Implementation Format Analysis (for code generation)"
+paths:
+  - "**/*vda5050*/**"
+  - "**/*vda5050*"
+  - "**/*mqtt*"
+---
+
 # VDA 5050 — Implementation Format Analysis (for code generation)
 
 When generating VDA 5050 code, **match one of the three proven idioms

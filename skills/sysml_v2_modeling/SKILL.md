@@ -12,7 +12,7 @@ real system.
 - MATLAB / System Composer side: `rules/matlab_simulink_mbse.md` + skill
   `system_composer_sysml`.
 - OMG training examples, one per concept: `~/mbse_ws/ref/SysML-v2-Release/sysml/src/training/`.
-- **Reference model** (studied first, then extended): `rover_a1/mbse/rover_a1/`.
+- **Reference model** (studied first, then extended): `rover_a1/rover_mbse/rover_a1/`.
 - Validator + renderer: `scripts/sysml_validate.py` (this skill folder).
 
 ## Toolchain
@@ -36,9 +36,9 @@ Run:
 ```bash
 PY=~/mbse_ws/tools/sysml-env/bin/python
 V=.claude/skills/sysml_v2_modeling/scripts/sysml_validate.py
-$PY $V mbse/rover_a1                                   # validate (dir = sorted order)
-$PY $V mbse/rover_a1 --show RoverA1_Structure::RoverA1 # element tree
-$PY $V mbse/rover_a1 --viz RoverA1_Structure::RoverA1@interconnection --out mbse/diagrams
+$PY $V rover_mbse/rover_a1                                   # validate (dir = sorted order)
+$PY $V rover_mbse/rover_a1 --show RoverA1_Structure::RoverA1 # element tree
+$PY $V rover_mbse/rover_a1 --viz RoverA1_Structure::RoverA1@interconnection --out rover_mbse/diagrams
 ```
 Exit codes: `0` clean, `1` model errors (`FAIL file` + `ERROR: … (file line : L column : C)`),
 `2` setup problem. Views for `--viz`: `default`, `tree`, `interconnection`,
@@ -54,7 +54,7 @@ Exit codes: `0` clean, `1` model errors (`FAIL file` + `ERROR: … (file line : 
 | "The rover shall …" | `04_requirements` | `requirement def <'R-AREA-NN'>` + usage in the spec group |
 | "Does it meet …?" / trade study | `05_analysis` | `analysis def` (objective `require …`) or `TradeStudies` |
 | Test procedure | `05_analysis` | `verification def` (objective `verify …`, `PassIf`) |
-| New system (not the rover) | `mbse/<system>/` | use `/new-sysml-model` |
+| New system (not the rover) | `rover_mbse/<system>/` | use `/new-sysml-model` |
 
 ## Deriving model content from the workspace
 
@@ -84,7 +84,7 @@ Exit codes: `0` clean, `1` model errors (`FAIL file` + `ERROR: … (file line : 
 6. Put the hand calculation (or MATLAB result + date) for each analysis in its
    `doc`.
 7. Render the changed view with `--viz` if it helps a review, into
-   `mbse/diagrams/`.
+   `rover_mbse/diagrams/`.
 8. Before handing off, run the `sysml-reviewer` agent on the diff.
 
 ## Common pitfalls

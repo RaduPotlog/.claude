@@ -1,3 +1,12 @@
+---
+description: "Nav2 (Navigation2) Architecture Reference"
+paths:
+  - "**/*nav2*"
+  - "**/rover_navigation/**"
+  - "**/*nav*params*.yaml"
+  - "**/behavior_trees/**"
+---
+
 # Nav2 (Navigation2) Architecture Reference
 
 ## Overview

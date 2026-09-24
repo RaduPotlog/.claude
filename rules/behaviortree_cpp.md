@@ -1,3 +1,12 @@
+---
+description: "BehaviorTree.CPP v4 — Core Reference"
+paths:
+  - "**/behavior_trees/**"
+  - "**/*.btproj"
+  - "**/*bt*node*"
+  - "**/*_bt_*"
+---
+
 # BehaviorTree.CPP v4 — Core Reference
 
 The C++ behavior-tree library that Nav 2 and BehaviorTree.ROS2 build on.

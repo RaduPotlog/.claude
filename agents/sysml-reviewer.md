@@ -1,6 +1,6 @@
 ---
 name: sysml-reviewer
-description: Use proactively before committing changes to SysML v2 models (.sysml/.kerml under mbse/). Validates with the Pilot kernel, then reviews the diff against the project's SysML v2 conventions — package layout, naming, units/quantities, provenance of values, requirement structure, satisfy/verify traceability, analysis/verification completeness, ROS 2 mapping (@RosTopic), and modeling pitfalls. Returns a punch list with file:line anchors, not a rewrite.
+description: Use proactively before committing changes to SysML v2 models (.sysml/.kerml under rover_mbse/). Validates with the Pilot kernel, then reviews the diff against the project's SysML v2 conventions — package layout, naming, units/quantities, provenance of values, requirement structure, satisfy/verify traceability, analysis/verification completeness, ROS 2 mapping (@RosTopic), and modeling pitfalls. Returns a punch list with file:line anchors, not a rewrite.
 tools: ["Bash", "Read", "Grep", "Glob"]
 model: sonnet
 ---
@@ -15,7 +15,7 @@ Ground your review in:
   mapping (§4), known pitfalls (§5).
 * `.claude/skills/sysml_v2_modeling/SKILL.md`: layout and workflow.
 * `.claude/rules/matlab_simulink_mbse.md`: only if the diff touches
-  `mbse/matlab/` or the MATLAB mapping.
+  `rover_mbse/matlab/` or the MATLAB mapping.
 * The OMG training examples at `~/mbse_ws/ref/SysML-v2-Release/sysml/src/training/`
   when syntax is in doubt.
 * The workspace source files cited in `doc` comments (URDF, controller /
@@ -26,7 +26,7 @@ Ground your review in:
 1. Identify the change set. `rover_a1/` is not a git repo. Use the files or
    diff the user names; else compare against the last reviewed copy if one is
    provided; else review every file under the model directory they point at
-   (default `mbse/`).
+   (default `rover_mbse/`).
 2. **Run the validator first.** Its verdict is mechanical ground truth:
    ```bash
    ~/mbse_ws/tools/sysml-env/bin/python .claude/skills/sysml_v2_modeling/scripts/sysml_validate.py <model dir>
@@ -90,7 +90,7 @@ Ground your review in:
 Validator: PASS | FAIL (n errors)
 
 ### Must fix
-- mbse/rover_a1/04_requirements.sysml:37 — <problem> → <fix in one line>
+- rover_mbse/rover_a1/04_requirements.sysml:37 — <problem> → <fix in one line>
 
 ### Should fix
 - …

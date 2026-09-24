@@ -149,7 +149,7 @@ Invoked directly from the terminal:
 /gz-changelog
 
 # MBSE / SysML v2 (+ MATLAB via the matlab MCP server)
-/sysml-validate mbse/rover_a1 --viz RoverA1_Structure::RoverA1@interconnection
+/sysml-validate rover_mbse/rover_a1 --viz RoverA1_Structure::RoverA1@interconnection
 /new-sysml-model DockingStation
 ```
 

@@ -2,7 +2,7 @@
 """Generate a System Composer build script (MATLAB) from a SysML v2 model.
 
 Pipeline A of rules/matlab_simulink_mbse.md. Reads the convention-constrained
-subset used in mbse/<system>/ (see rules/sysml_v2.md §3):
+subset used in rover_mbse/<system>/ (see rules/sysml_v2.md §3):
 
   item def  (+ typed attributes)        -> interface dictionary interface (+ elements, units)
   port def  (in/out/inout item)         -> port direction + interface
@@ -17,7 +17,7 @@ Every composition is auto-arranged (addComponent stacks children at one spot).
 Validate the model first (/sysml-validate); this parser assumes it is valid.
 
 Usage:
-  sysml_to_syscomp.py MODEL_DIR --root RoverA1 --out mbse/matlab/build_architecture.m
+  sysml_to_syscomp.py MODEL_DIR --root RoverA1 --out rover_mbse/matlab/build_architecture.m
       [--name RoverA1]   prefix for generated artifacts (default: --root)
 """
 import argparse

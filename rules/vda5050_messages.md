@@ -1,3 +1,11 @@
+---
+description: "VDA 5050 v3.0.0 — Complete Message & Process Reference"
+paths:
+  - "**/*vda5050*/**"
+  - "**/*vda5050*"
+  - "**/*mqtt*"
+---
+
 # VDA 5050 v3.0.0 — Complete Message & Process Reference
 
 Exhaustive field-by-field reference for **all eight** VDA 5050 messages

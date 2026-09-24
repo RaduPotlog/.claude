@@ -1,3 +1,13 @@
+---
+description: "ros2_controllers — Package Catalog Reference"
+paths:
+  - "**/*controllers*.yaml"
+  - "**/*ros2_control*"
+  - "**/*.urdf.xacro"
+  - "**/hardware/**"
+  - "**/*hardware_interface*"
+---
+
 # ros2_controllers — Package Catalog Reference
 
 Per-package reference for every controller and broadcaster in

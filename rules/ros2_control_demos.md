@@ -1,3 +1,13 @@
+---
+description: "ros2_control_demos — Example Catalog & Learning Map"
+paths:
+  - "**/*controllers*.yaml"
+  - "**/*ros2_control*"
+  - "**/*.urdf.xacro"
+  - "**/hardware/**"
+  - "**/*hardware_interface*"
+---
+
 # ros2_control_demos — Example Catalog & Learning Map
 
 The official, runnable example suite for ros2_control. Source:

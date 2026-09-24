@@ -1,3 +1,12 @@
+---
+description: "BehaviorTree.ROS2 — ROS 2 Integration Reference"
+paths:
+  - "**/behavior_trees/**"
+  - "**/*.btproj"
+  - "**/*bt*node*"
+  - "**/*_bt_*"
+---
+
 # BehaviorTree.ROS2 — ROS 2 Integration Reference
 
 The official bridge that exposes **ROS 2 actions / services / topics as

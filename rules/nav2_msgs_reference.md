@@ -1,3 +1,12 @@
+---
+description: "Nav2 Messages, Services & Actions Reference"
+paths:
+  - "**/*nav2*"
+  - "**/rover_navigation/**"
+  - "**/*nav*params*.yaml"
+  - "**/behavior_trees/**"
+---
+
 # Nav2 Messages, Services & Actions Reference
 
 Source: `~/nav2_ws/src/navigation2/nav2_msgs/`

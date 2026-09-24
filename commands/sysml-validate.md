@@ -7,17 +7,17 @@ allowed-tools: ["Bash", "Read"]
 Validate SysML v2 / KerML files headlessly and report diagnostics.
 
 Argument handling (`$ARGUMENTS`):
-1. Paths (files or directories). Default: `mbse/`. Directories load in sorted
+1. Paths (files or directories). Default: `rover_mbse/`. Directories load in sorted
    order, so numbered files resolve their imports.
 2. Optional `--viz <name>[@view]` (view ∈ default, tree, interconnection,
-   state, action, sequence, mixed) writes SVGs to `mbse/diagrams/`.
+   state, action, sequence, mixed) writes SVGs to `rover_mbse/diagrams/`.
 3. Optional `--show <name>` prints the element tree.
 
 Process:
 1. Run:
    ```bash
    ~/mbse_ws/tools/sysml-env/bin/python .claude/skills/sysml_v2_modeling/scripts/sysml_validate.py \
-     <paths> [--viz …] [--show …] --out mbse/diagrams
+     <paths> [--viz …] [--show …] --out rover_mbse/diagrams
    ```
 2. On exit code `2` (setup problem), print the reinstall recipe from the
    `sysml_v2_modeling` skill (Toolchain) and stop.

@@ -19,7 +19,7 @@ Ground every recommendation in:
   cannot do (release-gated), and the SysML ↔ System Composer mapping.
 * `.claude/rules/clean_architecture.md`: the software layers the model must
   reflect without contradicting them.
-* The current model `mbse/rover_a1/*.sysml` and the workspace sources it
+* The current model `rover_mbse/rover_a1/*.sysml` and the workspace sources it
   cites.
 
 ## Process

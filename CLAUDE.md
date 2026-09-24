@@ -66,7 +66,7 @@ For C++ the same separation lives under `include/<pkg>/<layer>/` and
 | Bridge a VDA 5050 fleet interface     | `rules/vda5050_protocol.md` + `skills/vda5050_integration/SKILL.md` |
 | Look up any VDA 5050 message/field    | `rules/vda5050_messages.md` (complete spec) |
 | Generate VDA 5050 code (which format?) | `rules/vda5050_implementation_formats.md` (pydantic / ROS msg / C++ idioms + v2→v3 diffs) |
-| Write / extend a SysML v2 model       | `rules/sysml_v2.md` + `skills/sysml_v2_modeling/SKILL.md` + `/new-sysml-model`; seed model `mbse/rover_a1/` |
+| Write / extend a SysML v2 model       | `rules/sysml_v2.md` + `skills/sysml_v2_modeling/SKILL.md` + `/new-sysml-model`; seed model `rover_mbse/rover_a1/` |
 | Validate SysML v2 / render diagrams   | `/sysml-validate` (OMG Pilot kernel, `~/mbse_ws/tools/sysml-env`) |
 | MATLAB / Simulink / System Composer   | `rules/matlab_simulink_mbse.md` + `skills/system_composer_sysml/SKILL.md` (needs the `matlab` MCP server) |
 | Model decomposition / traceability    | Agent `mbse-architect` |
@@ -90,7 +90,7 @@ For C++ the same separation lives under `include/<pkg>/<layer>/` and
 | `/new-hardware <pkg> <Class> <system\|actuator\|sensor>` | Scaffold a ros2_control hardware component + URDF + bringup. |
 | `/new-bt-node <pkg> <Class> <kind>` | Scaffold a BehaviorTree.CPP / BehaviorTree.ROS2 leaf node. |
 | `/new-vda5050-connector <pkg> [py\|cpp] [fleet\|robot]` | Scaffold a Clean-Architecture VDA 5050 connector. |
-| `/new-sysml-model <SystemName> [from-workspace\|empty]` | Scaffold a layered SysML v2 model under `mbse/`, seeded from the workspace, validated. |
+| `/new-sysml-model <SystemName> [from-workspace\|empty]` | Scaffold a layered SysML v2 model under `rover_mbse/`, seeded from the workspace, validated. |
 | `/sysml-validate [paths] [--viz Name[@view]] [--show Name]` | Validate SysML v2 with the Pilot kernel; render SVG diagrams. |
 | `/new-skill <name>` / `/new-command <name>` / `/new-agent <name>` | Extend this `.claude/` config with a new asset (self-extensibility). |
 | `/changelog [base] [pkg]` | Generate a CHANGELOG.rst block from commits. |
@@ -192,6 +192,11 @@ executables — read them when you need the cheatsheet.
 | `extending_claude_config` | Author a new rule / skill / command / agent for this `.claude/` config and index it (`/new-skill`, `/new-command`, `/new-agent`) |
 
 ## Rules
+
+Core rules (layering, nodes, QoS, general, testing, robot) are always
+loaded. Domain rules (VDA 5050, Nav 2, ros2_control, BT, SysML/MATLAB)
+are **path-scoped** (`paths:` frontmatter). They load when matching
+files are touched. Read them directly when a task needs one.
 
 | Rule file               | What it constrains |
 |-------------------------|--------------------|

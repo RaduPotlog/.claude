@@ -1,3 +1,12 @@
+---
+description: "Nav2 Key Parameters Reference"
+paths:
+  - "**/*nav2*"
+  - "**/rover_navigation/**"
+  - "**/*nav*params*.yaml"
+  - "**/behavior_trees/**"
+---
+
 # Nav2 Key Parameters Reference
 
 ## Default Config File
