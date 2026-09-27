@@ -69,6 +69,7 @@ For C++ the same separation lives under `include/<pkg>/<layer>/` and
 | Write / extend a SysML v2 model       | `rules/sysml_v2.md` + `skills/sysml_v2_modeling/SKILL.md` + `/new-sysml-model`; seed model `rover_mbse/rover_a1/` |
 | Validate SysML v2 / render diagrams   | `/sysml-validate` (OMG Pilot kernel, `~/mbse_ws/tools/sysml-env`) |
 | MATLAB / Simulink / System Composer   | `rules/matlab_simulink_mbse.md` + `skills/system_composer_sysml/SKILL.md` (needs the `matlab` MCP server) |
+| Platform MBSE (MATLAB-first): architecture, per-package SWRS, SYS-SR compliance | `src/rover_ros/rover_platform_mbse/README.md` (`build_all`, master policy) |
 | Model decomposition / traceability    | Agent `mbse-architect` |
 | Design something — which layer?       | Agent `clean-arch-architect` |
 | Review a diff before PR               | Agent `ros2-style-reviewer` |

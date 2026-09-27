@@ -2,6 +2,7 @@
 description: "MATLAB / Simulink / System Composer MBSE Reference"
 paths:
   - "rover_mbse/**"
+  - "**/rover_platform_mbse/**"
   - "**/*.sysml"
   - "**/*.kerml"
   - "**/*.m"
@@ -51,7 +52,7 @@ not WSL Claude Code, so the **manual** path was used and wired to WSL:
 |-------|-------|
 | MCP server v0.13.1 | `C:\Users\potlo\.matlab\agentic-toolkits\bin\matlab-mcp-server.exe` (+ `--setup-matlab` run once against R2026a) |
 | Simulink Agentic Toolkit `SATK-2026.09.c` | `C:\Users\potlo\.matlab\agentic-toolkits\simulink` (git clone, pinned tag) |
-| MCP registration | `rover_a1/.mcp.json` (project scope) — Windows exe via WSL interop, `--matlab-session-mode=auto`, `--extension-file=…\simulink\tools\tools.json`, `--disable-telemetry=true`, logs in `…\agentic-toolkits\logs` |
+| MCP registration | `rover_a1/.mcp.json` (project scope; a real file since 2026-09-27, when `rover_mbse/` was removed, and its `--initial-working-folder` is `src/rover_ros/rover_platform_mbse`) — Windows exe via WSL interop, `--matlab-session-mode=auto`, `--extension-file=…\simulink\tools\tools.json`, `--disable-telemetry=true`, logs in `…\agentic-toolkits\logs` |
 | Toolkit skills | Claude plugins from marketplace `matlab/simulink-agentic-toolkit#SATK-2026.09.c`, project scope (`.claude/settings.json` → `enabledPlugins`): model-based-design-core, model-based-system-engineering, verification-validation-and-test, simulink-simulation, physical-modeling, control-systems, simulink-environment-fundamentals |
 | MATLAB init | `C:\Users\potlo\Documents\MATLAB\startup.m` → `satk_initialize` (skipped for `-batch`) |
 
@@ -105,6 +106,22 @@ calc/analysis/verification case, runs the Simulink twin
 (`build_endurance_sim.m` → `EnduranceSim.slx`), and writes
 `results/analysis_results.json`. Results go back into the analysis `doc`
 (value, margin, release, date) and the `.sysml` is re-validated.
+
+**D. MATLAB-first platform project** (`src/rover_ros/rover_platform_mbse`, 2026-09-27):
+System Composer architecture, behaviour models, Requirements Toolbox SWRS and trace
+links, all built from JSON by scripts (`build_all`). See its README. R2026a API
+pitfalls hit there:
+- `arch.connect(srcPort, dstPort)` returns an empty connector. Use `connect(srcPort, dstPort)`.
+- Stateflow `UserSpecifiedStateTransitionExecutionOrder` no longer exists (it is the default).
+- Loading a requirement set auto-loads link sets that point at it. Recreating a set under
+  the same name then fails ("name conflict"): delete `<set>~slreqx.slmx` first and build
+  sets before loading others.
+- `slreq.createTextRange` fails when the range already exists. Rebuild the test link sets
+  (`t*~m.slmx`) instead of adding to them.
+- `exportFromMLProject` needs the `.prj` path (not the project object). It does not escape
+  `'` in requirement Summaries, so the `.sysml` is invalid until quotes are removed from them.
+- Files edited from WSL are not seen over `\\wsl.localhost` (no change notifications):
+  run `rehash path` first.
 
 ## 5. SysML v2 ↔ System Composer mapping
 
